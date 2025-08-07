@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router';
 
 const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
@@ -52,7 +53,7 @@ const Navbar = () => {
                 <path d="M6 20c0-2.21 3.58-4 8-4s8 1.79 8 4" strokeWidth="2" />
               </svg>
             </button>
-            <a href="/cart.html" className="p-2 bg-transparent border-none relative">
+            <Link to="/cart" className="p-2 bg-transparent border-none relative">
               <span className="sr-only">Shopping Cart</span>
               <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <circle cx="9" cy="21" r="1" />
@@ -62,12 +63,12 @@ const Navbar = () => {
               </svg>
               <span
                 className="absolute -top-1 -right-1 bg-sale text-sale-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
-            </a>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center space-x-2">
-            <a href="/cart.html" className="p-2 bg-transparent border-none">
+            <Link to="/cart" className="p-2 bg-transparent border-none">
               <span className="sr-only">Shopping Cart</span>
               <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <circle cx="9" cy="21" r="1" />
@@ -75,7 +76,7 @@ const Navbar = () => {
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
                   strokeWidth="2" />
               </svg>
-            </a>
+            </Link>
             <button 
               className="p-2 bg-transparent border-none" 
               id="mobile-menu-toggle"
