@@ -166,8 +166,7 @@
 
                 <!-- Checkout Button -->
                 <div class="mt-4">
-                    <button
-                        id="checkout-button"
+                    <button id="checkout-button"
                         class="w-full bg-purple-600 hover:bg-purple-700 hover:cursor-pointer text-white font-bold py-2 px-4 rounded-md transition-colors duration-200">
                         Proceed to Checkout
                     </button>
@@ -195,6 +194,13 @@
         // Ambil data cart dari localStorage
         const cartData = JSON.parse(localStorage.getItem('cart')) || [];
 
+        // Fungsi untuk mengubah string harga ke number
+        function parsePrice(priceStr) {
+            // Hilangkan "Rp", titik, dan karakter non-angka lainnya
+            return Number(priceStr.replace(/[^0-9]/g, ''));
+        }
+
+
         // Fungsi untuk render data cart ke tabel
         function renderCart() {
             const cartTableBody = document.querySelector('tbody');
@@ -207,11 +213,11 @@
                 const product = {
                     id: item.id,
                     name: item.name, // Nama produk (contoh)
-                    price: 10000, // Harga produk (contoh)
+                    price: parsePrice(item.price), // Harga produk (contoh)
                 };
 
                 const itemTotal = Number(Number(product.price) * Number(item.qty));
-                
+
                 total += itemTotal;
 
                 // Tambahkan baris ke tabel
@@ -262,7 +268,7 @@
                 renderCart(); // Render ulang cart
             }
         });
-        
+
         // Fungsi untuk mengubah dafar belanja menjadi pesan whatsapp
         function createWhatsAppMessage() {
             let message = "Halo, saya ingin melakukan pembelian:\n\n";
