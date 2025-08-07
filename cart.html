@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcomStore - Cart</title>
+
+    <!-- tambahkan tailwind css -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <div class="min-h-screen">
+
+        <!-- Bagian Navbar -->
+        <nav class="fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-md border-b border-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0">
+                        <a href="index.html" class="flex items-center space-x-2">
+                            <div class="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
+                                <span class="text-primary-foreground font-bold text-lg">E</span>
+                            </div>
+                            <span class="text-xl font-bold text-foreground">EcomStore</span>
+                        </a>
+                    </div>
+
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-8">
+                            <a href="index.html#home"
+                                class="text-foreground hover:text-primary transition-colors duration-200 px-3 py-2 text-sm font-medium">Home</a>
+                            <a href="index.html#categories"
+                                class="text-foreground hover:text-primary transition-colors duration-200 px-3 py-2 text-sm font-medium">Categories</a>
+                            <a href="index.html#discounts"
+                                class="text-foreground hover:text-primary transition-colors duration-200 px-3 py-2 text-sm font-medium">Discounts</a>
+                            <a href="index.html#contact"
+                                class="text-foreground hover:text-primary transition-colors duration-200 px-3 py-2 text-sm font-medium">Contact</a>
+                        </div>
+                    </div>
+
+                    <!-- Desktop Icons -->
+                    <div class="hidden md:flex items-center space-x-4">
+                        <button class="p-2 bg-transparent border-none">
+                            <span class="sr-only">Search</span>
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <circle cx="11" cy="11" r="8" stroke-width="2" />
+                                <line x1="21" y1="21" x2="16.65" y2="16.65" stroke-width="2" />
+                            </svg>
+                        </button>
+                        <button class="p-2 bg-transparent border-none">
+                            <span class="sr-only">User</span>
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <circle cx="12" cy="8" r="4" stroke-width="2" />
+                                <path d="M6 20c0-2.21 3.58-4 8-4s8 1.79 8 4" stroke-width="2" />
+                            </svg>
+                        </button>
+                        <a href="cart.html" class="p-2 bg-transparent border-none relative">
+                            <span class="sr-only">Shopping Cart</span>
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <circle cx="9" cy="21" r="1" />
+                                <circle cx="20" cy="21" r="1" />
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                                    stroke-width="2" />
+                            </svg>
+                            <span
+                                class="absolute -top-1 -right-1 bg-sale text-sale-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                        </a>
+                    </div>
+
+                    <!-- Mobile menu button -->
+                    <div class="md:hidden flex items-center space-x-2">
+                        <button class="p-2 bg-transparent border-none">
+                            <span class="sr-only">Shopping Cart</span>
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <circle cx="9" cy="21" r="1" />
+                                <circle cx="20" cy="21" r="1" />
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                                    stroke-width="2" />
+                            </svg>
+                        </button>
+                        <button class="p-2 bg-transparent border-none" id="mobile-menu-toggle">
+                            <span class="sr-only">Menu</span>
+                            <svg id="menu-icon" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" />
+                            </svg>
+                            <svg id="close-icon" class="h-6 w-6 hidden" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path d="M6 18L18 6M6 6l12 12" stroke-width="2" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu -->
+                <div id="mobile-menu" class="md:hidden hidden">
+                    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-background border-t border-border">
+                        <a href="index.html#home"
+                            class="text-foreground hover:text-primary block px-3 py-2 text-base font-medium transition-colors duration-200">Home</a>
+                        <a href="index.html#categories"
+                            class="text-foreground hover:text-primary block px-3 py-2 text-base font-medium transition-colors duration-200">Categories</a>
+                        <a href="index.html#discounts"
+                            class="text-foreground hover:text-primary block px-3 py-2 text-base font-medium transition-colors duration-200">Discounts</a>
+                        <a href="index.html#contact"
+                            class="text-foreground hover:text-primary block px-3 py-2 text-base font-medium transition-colors duration-200">Contact</a>
+                        <div class="flex items-center space-x-4 px-3 py-2">
+                            <button class="p-2 bg-transparent border-none">
+                                <span class="sr-only">Search</span>
+                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <circle cx="11" cy="11" r="8" stroke-width="2" />
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65" stroke-width="2" />
+                                </svg>
+                            </button>
+                            <button class="p-2 bg-transparent border-none">
+                                <span class="sr-only">User</span>
+                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="8" r="4" stroke-width="2" />
+                                    <path d="M6 20c0-2.21 3.58-4 8-4s8 1.79 8 4" stroke-width="2" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Cart Content Area (with top padding to account for fixed navbar) -->
+        <div class="pt-16">
+            <!-- Section untuk navbar telah ditambahkan -->
+            <!-- Tambahkan konten cart di sini -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <h1 class="text-2xl font-bold mb-6">Keranjang Belanja</h1>
+                <div class="bg-white shadow-md rounded-lg p-4 sm:p-6 overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200 text-sm">
+                        <thead>
+                            <tr>
+                                <!-- Tombol hapus -->
+                                <th></th>
+                                <th
+                                    class="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">
+                                    Product</th>
+                                <th
+                                    class="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">
+                                    Price</th>
+                                <th
+                                    class="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">
+                                    Quantity</th>
+                                <th
+                                    class="px-2 sm:px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">
+                                    Total</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <!-- Data cart akan diisi di sini -->
+                        </tbody>
+                    </table>
+
+                    <!-- Total Section -->
+                    <div class="mt-6 flex justify-between items-center">
+                        <span class="text-lg font-bold">Total:</span>
+                        <span class="text-xl font-bold total-amount">Rp0</span>
+                    </div>
+                </div>
+
+                <!-- Checkout Button -->
+                <div class="mt-4">
+                    <button
+                        id="checkout-button"
+                        class="w-full bg-purple-600 hover:bg-purple-700 hover:cursor-pointer text-white font-bold py-2 px-4 rounded-md transition-colors duration-200">
+                        Proceed to Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple JS for mobile menu toggle
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function () {
+                mobileMenu.classList.toggle('hidden');
+                menuIcon.classList.toggle('hidden');
+                closeIcon.classList.toggle('hidden');
+            });
+        }
+    </script>
+    <script>
+        // Ambil data cart dari localStorage
+        const cartData = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Fungsi untuk render data cart ke tabel
+        function renderCart() {
+            const cartTableBody = document.querySelector('tbody');
+            cartTableBody.innerHTML = ''; // Kosongkan tabel sebelum render ulang
+
+            let total = 0;
+
+            cartData.forEach((item, index) => {
+                // Contoh data produk (Anda bisa mengganti ini dengan data produk sebenarnya)
+                const product = {
+                    id: item.id,
+                    name: item.name, // Nama produk (contoh)
+                    price: 10000, // Harga produk (contoh)
+                };
+
+                const itemTotal = Number(Number(product.price) * Number(item.qty));
+                
+                total += itemTotal;
+
+                // Tambahkan baris ke tabel
+                const row = `
+                <tr>
+                    <td class="px-2 sm:px-4 py-4 whitespace-nowrap">
+                        <button class="text-red-500 hover:text-red-700 font-bold delete-btn" data-index="${index}" title="Hapus">
+                            &times;
+                        </button>
+                    </td>
+                    <td class="px-2 sm:px-6 py-4 whitespace-nowrap">${product.name}</td>
+                    <td class="px-2 sm:px-6 py-4 whitespace-nowrap">Rp${product.price.toLocaleString()}</td>
+                    <td class="px-2 sm:px-6 py-4 whitespace-nowrap">
+                        <input type="number" value="${item.qty}" min="1" class="w-16 sm:w-full border border-gray-300 rounded-md px-2 py-1" data-index="${index}">
+                    </td>
+                    <td class="px-2 sm:px-6 py-4 whitespace-nowrap text-right">Rp${itemTotal.toLocaleString()}</td>
+                </tr>
+            `;
+                cartTableBody.innerHTML += row;
+            });
+
+            // Update total
+            document.querySelector('.total-amount').textContent = `Rp${total.toLocaleString()}`;
+        }
+
+        // Event listener untuk update quantity
+        document.addEventListener('input', (event) => {
+            if (event.target.type === 'number') {
+                const index = event.target.getAttribute('data-index');
+                const newQty = parseInt(event.target.value, 10);
+                if (newQty > 0) {
+                    cartData[index].qty = newQty;
+                    localStorage.setItem('cart', JSON.stringify(cartData));
+                    renderCart();
+                }
+            }
+        });
+
+        // Render cart saat halaman dimuat
+        renderCart();
+
+        // Event listener untuk tombol hapus
+        document.addEventListener('click', (event) => {
+            if (event.target.classList.contains('delete-btn')) {
+                const index = event.target.getAttribute('data-index');
+                cartData.splice(index, 1); // Hapus item dari array
+                localStorage.setItem('cart', JSON.stringify(cartData)); // Simpan perubahan ke localStorage
+                renderCart(); // Render ulang cart
+            }
+        });
+        
+        // Fungsi untuk mengubah dafar belanja menjadi pesan whatsapp
+        function createWhatsAppMessage() {
+            let message = "Halo, saya ingin melakukan pembelian:\n\n";
+            cartData.forEach(item => {
+                const product = {
+                    name: item.name, // Nama produk (contoh)
+                    price: 10000, // Harga produk (contoh)
+                };
+                message += `${product.name} - Qty: ${item.qty} - Total: Rp${(product.price * item.qty).toLocaleString()}\n`;
+            });
+            message += `\nTotal Pembelian: Rp${document.querySelector('.total-amount').textContent.replace('Rp', '').replace(/,/g, '')}`;
+            return encodeURIComponent(message);
+        }
+
+        // Event listener untuk tombol checkout
+        document.getElementById('checkout-button').addEventListener('click', () => {
+            if (cartData.length === 0) {
+                alert('Keranjang belanja kosong!');
+                return;
+            }
+
+            // Buat pesan WhatsApp
+            const message = createWhatsAppMessage();
+
+            // buka new tab dengan link WhatsApp
+            const whatsappUrl = `https://wa.me/6281234567890?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        });
+    </script>
+    </div>
+</body>
+
+</html>

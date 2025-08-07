@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcomStore</title>
+
+    <!-- tambahkan tailwind css -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <div class="min-h-screen">
+
+        <nav class="fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-md border-b border-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0">
+                        <a href="#home" class="flex items-center space-x-2">
+                            <div class="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
+                                <span class="text-primary-foreground font-bold text-lg">E</span>
+                            </div>
+                            <span class="text-xl font-bold text-foreground">EcomStore</span>
+                        </a>
+                    </div>
+
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-8">
+                            <a href="#home"
+                                class="text-foreground hover:text-primary transition-colors duration-200 px-3 py-2 text-sm font-medium">Home</a>
+                            <a href="#categories"
+                                class="text-foreground hover:text-primary transition-colors duration-200 px-3 py-2 text-sm font-medium">Categories</a>
+                            <a href="#discounts"
+                                class="text-foreground hover:text-primary transition-colors duration-200 px-3 py-2 text-sm font-medium">Discounts</a>
+                            <a href="#contact"
+                                class="text-foreground hover:text-primary transition-colors duration-200 px-3 py-2 text-sm font-medium">Contact</a>
+                        </div>
+                    </div>
+
+                    <!-- Desktop Icons -->
+                    <div class="hidden md:flex items-center space-x-4">
+                        <button class="p-2 bg-transparent border-none">
+                            <span class="sr-only">Search</span>
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <circle cx="11" cy="11" r="8" stroke-width="2" />
+                                <line x1="21" y1="21" x2="16.65" y2="16.65" stroke-width="2" />
+                            </svg>
+                        </button>
+                        <button class="p-2 bg-transparent border-none">
+                            <span class="sr-only">User</span>
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <circle cx="12" cy="8" r="4" stroke-width="2" />
+                                <path d="M6 20c0-2.21 3.58-4 8-4s8 1.79 8 4" stroke-width="2" />
+                            </svg>
+                        </button>
+                        <a href="/cart.html" class="p-2 bg-transparent border-none relative">
+                            <span class="sr-only">Shopping Cart</span>
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <circle cx="9" cy="21" r="1" />
+                                <circle cx="20" cy="21" r="1" />
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                                    stroke-width="2" />
+                            </svg>
+                            <span
+                                class="absolute -top-1 -right-1 bg-sale text-sale-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                        </a>
+                    </div>
+
+                    <!-- Mobile menu button -->
+                    <div class="md:hidden flex items-center space-x-2">
+                        <a href="/cart.html" class="p-2 bg-transparent border-none">
+                            <span class="sr-only">Shopping Cart</span>
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <circle cx="9" cy="21" r="1" />
+                                <circle cx="20" cy="21" r="1" />
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                                    stroke-width="2" />
+                            </svg>
+                        </a>
+                        <button class="p-2 bg-transparent border-none" id="mobile-menu-toggle">
+                            <span class="sr-only">Menu</span>
+                            <svg id="menu-icon" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" />
+                            </svg>
+                            <svg id="close-icon" class="h-6 w-6 hidden" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path d="M6 18L18 6M6 6l12 12" stroke-width="2" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu -->
+                <div id="mobile-menu" class="md:hidden hidden">
+                    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-background border-t border-border">
+                        <a href="#home"
+                            class="text-foreground hover:text-primary block px-3 py-2 text-base font-medium transition-colors duration-200">Home</a>
+                        <a href="#categories"
+                            class="text-foreground hover:text-primary block px-3 py-2 text-base font-medium transition-colors duration-200">Categories</a>
+                        <a href="#discounts"
+                            class="text-foreground hover:text-primary block px-3 py-2 text-base font-medium transition-colors duration-200">Discounts</a>
+                        <a href="#contact"
+                            class="text-foreground hover:text-primary block px-3 py-2 text-base font-medium transition-colors duration-200">Contact</a>
+                        <div class="flex items-center space-x-4 px-3 py-2">
+                            <button class="p-2 bg-transparent border-none">
+                                <span class="sr-only">Search</span>
+                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <circle cx="11" cy="11" r="8" stroke-width="2" />
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65" stroke-width="2" />
+                                </svg>
+                            </button>
+                            <button class="p-2 bg-transparent border-none">
+                                <span class="sr-only">User</span>
+                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="8" r="4" stroke-width="2" />
+                                    <path d="M6 20c0-2.21 3.58-4 8-4s8 1.79 8 4" stroke-width="2" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="pt-16 min-h-screen bg-purple-600 relative overflow-hidden">
+            <!-- Background Pattern -->
+            <div
+                class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIyIi8+PC9nPjwvZz48L3N2Zz4=')] opacity-20">
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                <div class="grid lg:grid-cols-2 gap-12 items-center min-h-screen py-20">
+                    <!-- Text Content -->
+                    <div class="text-center lg:text-left animate-fade-in">
+                        <div
+                            class="inline-flex items-center bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
+                            <!-- Star Icon -->
+                            <svg class="w-4 h-4 mr-2 text-yellow-300" fill="currentColor" viewBox="0 0 20 20">
+                                <polygon
+                                    points="10,1 12.59,7.36 19.51,7.36 13.96,11.64 16.55,18 10,13.72 3.45,18 6.04,11.64 0.49,7.36 7.41,7.36" />
+                            </svg>
+                            Produk Terlaris Minggu Ini
+                        </div>
+
+                        <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                            Belanja
+                            <span class="block text-accent">Smart</span>
+                            Hemat Lebih
+                        </h1>
+
+                        <p class="text-lg md:text-xl text-white/90 mb-8 max-w-lg mx-auto lg:mx-0">
+                            Temukan ribuan produk berkualitas dengan harga terbaik. Gratis ongkir untuk pembelian
+                            pertama!
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
+                            <a href="#belanja"
+                                class="bg-white text-primary hover:bg-white/90 transition-all duration-300 transform hover:scale-105 px-6 py-3 rounded-lg flex items-center justify-center text-lg font-semibold">
+                                <!-- ShoppingBag Icon -->
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M6 2l1 2h10l1-2" stroke-width="2" />
+                                    <rect x="3" y="6" width="18" height="13" rx="2" stroke-width="2" />
+                                </svg>
+                                Mulai Belanja
+                                <!-- ArrowRight Icon -->
+                                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M5 12h14M13 5l7 7-7 7" stroke-width="2" />
+                                </svg>
+                            </a>
+                            <a href="#katalog"
+                                class="border border-white text-white hover:bg-white hover:text-primary transition-all duration-300 px-6 py-3 rounded-lg flex items-center justify-center text-lg font-semibold">
+                                Lihat Katalog
+                            </a>
+                        </div>
+
+                        <!-- Stats -->
+                        <div class="grid grid-cols-3 gap-8 max-w-md mx-auto lg:mx-0">
+                            <div class="text-center">
+                                <div class="text-2xl md:text-3xl font-bold text-white">10K+</div>
+                                <div class="text-white/80 text-sm">Produk</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl md:text-3xl font-bold text-white">50K+</div>
+                                <div class="text-white/80 text-sm">Pelanggan</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl md:text-3xl font-bold text-white">99%</div>
+                                <div class="text-white/80 text-sm">Puas</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hero Image -->
+                    <div class="relative animate-float">
+                        <div class="relative z-10">
+                            <img src="https://picsum.photos/600/700?random=1" alt="Featured Product"
+                                class="w-full max-w-md mx-auto rounded-3xl shadow-smooth-xl transform rotate-3 hover:rotate-0 transition-transform duration-700" />
+
+                            <!-- Floating Elements -->
+                            <div
+                                class="absolute -top-4 -left-4 bg-red-500 text-white px-4 py-2 rounded-2xl shadow-smooth-lg animate-bounce-in">
+                                <div class="text-sm font-bold">DISKON 50%</div>
+                            </div>
+
+                            <div
+                                class="absolute -bottom-4 -right-4 bg-white text-foreground p-4 rounded-2xl shadow-smooth-lg animate-bounce-in animation-delay-300">
+                                <div class="flex items-center space-x-2">
+                                    <div class="flex">
+                                        <!-- 5 Star Icons -->
+                                        <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                            <polygon
+                                                points="10,1 12.59,7.36 19.51,7.36 13.96,11.64 16.55,18 10,13.72 3.45,18 6.04,11.64 0.49,7.36 7.41,7.36" />
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                            <polygon
+                                                points="10,1 12.59,7.36 19.51,7.36 13.96,11.64 16.55,18 10,13.72 3.45,18 6.04,11.64 0.49,7.36 7.41,7.36" />
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                            <polygon
+                                                points="10,1 12.59,7.36 19.51,7.36 13.96,11.64 16.55,18 10,13.72 3.45,18 6.04,11.64 0.49,7.36 7.41,7.36" />
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                            <polygon
+                                                points="10,1 12.59,7.36 19.51,7.36 13.96,11.64 16.55,18 10,13.72 3.45,18 6.04,11.64 0.49,7.36 7.41,7.36" />
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                            <polygon
+                                                points="10,1 12.59,7.36 19.51,7.36 13.96,11.64 16.55,18 10,13.72 3.45,18 6.04,11.64 0.49,7.36 7.41,7.36" />
+                                        </svg>
+                                    </div>
+                                    <span class="text-sm font-semibold">4.9/5</span>
+                                </div>
+                                <div class="text-xs text-muted-foreground">1,234 ulasan</div>
+                            </div>
+                        </div>
+
+                        <!-- Background decoration -->
+                        <div
+                            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/10 rounded-full blur-3xl">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section id="categories" class="py-20 bg-secondary/30">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Header -->
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+                        Jelajahi Kategori
+                    </h2>
+                    <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+                        Temukan produk favorit Anda dari berbagai kategori pilihan
+                    </p>
+                </div>
+
+                <!-- Categories Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                    <!-- Card 1 -->
+                    <div class="group cursor-pointer overflow-hidden bg-gradient-to-br from-purple-200 to-purple-400 border-0 shadow-smooth-lg hover:shadow-smooth-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in"
+                        style="animation-delay: 0ms;">
+                        <div class="relative h-48 overflow-hidden">
+                            <div class="absolute inset-0 bg-purple-400 opacity-90"></div>
+                            <img src="https://picsum.photos/400/200?random=2" alt="Elektronik"
+                                class="w-full h-full object-cover mix-blend-overlay group-hover:scale-110 transition-transform duration-700" />
+                            <div
+                                class="absolute top-4 right-4 bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm">
+                                120 Produk
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3
+                                class="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                                Elektronik
+                            </h3>
+                            <p class="text-muted-foreground mb-4">
+                                Gadget, laptop, dan perangkat elektronik terbaru.
+                            </p>
+                            <a href="#elektronik"
+                                class="inline-flex items-center text-primary hover:text-primary-hover font-semibold group-hover:translate-x-1 transition-transform duration-300">
+                                Lihat Produk
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M5 12h14M13 5l7 7-7 7" stroke-width="2" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="group cursor-pointer overflow-hidden bg-gradient-to-br from-green-200 to-green-400 border-0 shadow-smooth-lg hover:shadow-smooth-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in"
+                        style="animation-delay: 100ms;">
+                        <div class="relative h-48 overflow-hidden">
+                            <div class="absolute inset-0 bg-green-400 opacity-90"></div>
+                            <img src="https://picsum.photos/400/200?random=3" alt="Fashion"
+                                class="w-full h-full object-cover mix-blend-overlay group-hover:scale-110 transition-transform duration-700" />
+                            <div
+                                class="absolute top-4 right-4 bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm">
+                                80 Produk
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3
+                                class="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                                Fashion
+                            </h3>
+                            <p class="text-muted-foreground mb-4">
+                                Pakaian, sepatu, dan aksesoris terkini.
+                            </p>
+                            <a href="#fashion"
+                                class="inline-flex items-center text-primary hover:text-primary-hover font-semibold group-hover:translate-x-1 transition-transform duration-300">
+                                Lihat Produk
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M5 12h14M13 5l7 7-7 7" stroke-width="2" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="group cursor-pointer overflow-hidden bg-gradient-to-br from-yellow-200 to-yellow-400 border-0 shadow-smooth-lg hover:shadow-smooth-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in"
+                        style="animation-delay: 200ms;">
+                        <div class="relative h-48 overflow-hidden">
+                            <div class="absolute inset-0 bg-yellow-400 opacity-90"></div>
+                            <img src="https://picsum.photos/400/200?random=4" alt="Rumah Tangga"
+                                class="w-full h-full object-cover mix-blend-overlay group-hover:scale-110 transition-transform duration-700" />
+                            <div
+                                class="absolute top-4 right-4 bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm">
+                                60 Produk
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3
+                                class="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                                Rumah Tangga
+                            </h3>
+                            <p class="text-muted-foreground mb-4">
+                                Peralatan rumah tangga dan dekorasi.
+                            </p>
+                            <a href="#rumah-tangga"
+                                class="inline-flex items-center text-primary hover:text-primary-hover font-semibold group-hover:translate-x-1 transition-transform duration-300">
+                                Lihat Produk
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M5 12h14M13 5l7 7-7 7" stroke-width="2" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- View All Button -->
+                <div class="text-center">
+                    <a href="#semua-kategori"
+                        class="inline-flex items-center px-6 py-3 border border-primary text-primary rounded-lg font-semibold hover:bg-primary hover:text-white transition-all duration-300 group">
+                        Lihat Semua Kategori
+                        <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M5 12h14M13 5l7 7-7 7" stroke-width="2" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Discount Product Section -->
+        <section id="products" class="py-20 bg-background">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Header -->
+                <div class="text-center mb-16">
+                    <div
+                        class="inline-flex items-center bg-red-100 text-sale px-4 py-2 rounded-full text-sm font-medium mb-4">
+                        <!-- Clock Icon -->
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" stroke-width="2" />
+                            <path d="M12 6v6l4 2" stroke-width="2" />
+                        </svg>
+                        Flash Sale Terbatas
+                    </div>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+                        Produk <span class="text-sale">Diskon</span> Hari Ini
+                    </h2>
+                    <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+                        Jangan lewatkan kesempatan emas! Hemat hingga 50% untuk produk pilihan
+                    </p>
+                </div>
+
+                <!-- Products Grid -->
+                <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+
+                <!-- View All Button -->
+                <div class="text-center mt-12">
+                    <button
+                        class="group px-8 py-3 border border-primary text-primary rounded-lg font-semibold hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center">
+                        Lihat Semua Produk Diskon
+                        <svg class="w-5 h-5 ml-2 group-hover:animate-bounce" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" stroke-width="2" />
+                            <path d="M12 6v6l4 2" stroke-width="2" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call To Action -->
+        <section class="py-20 bg-gradient-to-br from-purple-700 via-purple-600 to-purple-500 relative overflow-hidden">
+            <!-- Background Pattern -->
+            <div
+                class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-30">
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                <div class="text-center mb-16">
+                    <!-- Badge -->
+                    <span
+                        class="inline-flex items-center bg-white/20 text-white border border-white/30 mb-6 px-4 py-2 text-sm rounded-full font-medium">
+                        <!-- Gift Icon -->
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <rect x="2" y="7" width="20" height="13" rx="2" stroke-width="2" />
+                            <path
+                                d="M12 7V3M8.5 7C7.12 7 6 5.88 6 4.5S7.12 2 8.5 2 11 3.12 11 4.5V7M15.5 7C16.88 7 18 5.88 18 4.5S16.88 2 15.5 2 13 3.12 13 4.5V7"
+                                stroke-width="2" />
+                        </svg>
+                        Penawaran Terbatas
+                    </span>
+
+                    <!-- Main Heading -->
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+                        Bergabung Sekarang &<br />
+                        <span class="text-accent text-yellow-300">Dapatkan Diskon 25%</span>
+                    </h2>
+
+                    <p class="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                        Daftar sebagai member dan nikmati berbagai keuntungan eksklusif serta penawaran menarik setiap
+                        harinya
+                    </p>
+
+                    <!-- Newsletter Signup -->
+                    <form class="max-w-md mx-auto mb-12">
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <input type="email" placeholder="Masukkan email Anda"
+                                class="flex-1 bg-white/20 backdrop-blur-sm border border-white/30 text-white placeholder-white/70 focus:bg-white/30 px-4 py-3 rounded-lg"
+                                required />
+                            <button type="submit"
+                                class="bg-white text-primary hover:bg-white/90 transition-all duration-300 transform hover:scale-105 whitespace-nowrap px-6 py-3 rounded-lg font-semibold flex items-center justify-center">
+                                Daftar Sekarang
+                                <!-- ArrowRight Icon -->
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M5 12h14M13 5l7 7-7 7" stroke-width="2" />
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Features Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                        <div class="text-center animate-fade-in" style="animation-delay: 0ms;">
+                            <div
+                                class="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl text-white mb-4 hover:bg-white/30 transition-colors duration-300">
+                                <!-- Star Icon -->
+                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                    <polygon
+                                        points="10,1 12.59,7.36 19.51,7.36 13.96,11.64 16.55,18 10,13.72 3.45,18 6.04,11.64 0.49,7.36 7.41,7.36" />
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Member Eksklusif</h3>
+                            <p class="text-white/80 text-sm">Akses promo khusus dan diskon tambahan untuk member.</p>
+                        </div>
+                        <div class="text-center animate-fade-in" style="animation-delay: 100ms;">
+                            <div
+                                class="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl text-white mb-4 hover:bg-white/30 transition-colors duration-300">
+                                <!-- Truck Icon -->
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <rect x="1" y="7" width="15" height="10" rx="2" stroke-width="2" />
+                                    <path d="M16 11h3l3 3v3a2 2 0 0 1-2 2h-1" stroke-width="2" />
+                                    <circle cx="5.5" cy="19.5" r="1.5" />
+                                    <circle cx="18.5" cy="19.5" r="1.5" />
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Gratis Ongkir</h3>
+                            <p class="text-white/80 text-sm">Nikmati pengiriman gratis untuk pembelian pertama.</p>
+                        </div>
+                        <div class="text-center animate-fade-in" style="animation-delay: 200ms;">
+                            <div
+                                class="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl text-white mb-4 hover:bg-white/30 transition-colors duration-300">
+                                <!-- Shield Icon -->
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l7 4v6c0 5.25-3.5 10-7 10s-7-4.75-7-10V6z" stroke-width="2" />
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Pembayaran Aman</h3>
+                            <p class="text-white/80 text-sm">Transaksi dijamin aman dengan berbagai metode pembayaran.
+                            </p>
+                        </div>
+                        <div class="text-center animate-fade-in" style="animation-delay: 300ms;">
+                            <div
+                                class="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl text-white mb-4 hover:bg-white/30 transition-colors duration-300">
+                                <!-- Support Icon -->
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10" stroke-width="2" />
+                                    <path d="M8 15c1.333 1 2.667 1 4 0" stroke-width="2" />
+                                    <path d="M9 9h.01M15 9h.01" stroke-width="2" />
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Layanan 24/7</h3>
+                            <p class="text-white/80 text-sm">Tim support siap membantu Anda kapan saja.</p>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="#belanja"
+                            class="bg-white text-primary hover:bg-white/90 transition-all duration-300 transform hover:scale-105 px-6 py-3 rounded-lg font-semibold flex items-center justify-center text-lg">
+                            Mulai Belanja Sekarang
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M5 12h14M13 5l7 7-7 7" stroke-width="2" />
+                            </svg>
+                        </a>
+                        <a href="#download"
+                            class="border border-white text-white hover:bg-white hover:text-primary transition-all duration-300 px-6 py-3 rounded-lg font-semibold flex items-center justify-center text-lg">
+                            Download Aplikasi
+                        </a>
+                    </div>
+
+                    <!-- Trust Indicators -->
+                    <div class="mt-12 pt-8 border-t border-white/20">
+                        <p class="text-white/70 text-sm mb-4">Dipercaya oleh 50,000+ pelanggan</p>
+                        <div class="flex justify-center items-center space-x-8 opacity-60">
+                            <div class="text-white text-lg font-bold">★★★★★</div>
+                            <div class="text-white text-sm">4.9/5 Rating</div>
+                            <div class="text-white text-sm">•</div>
+                            <div class="text-white text-sm">15,000+ Ulasan</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-card border-t border-border">
+            <!-- Features Section -->
+            <div class="py-16 bg-secondary/30"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="text-center p-6 bg-card rounded-2xl shadow-smooth-md hover:shadow-smooth-lg transition-all duration-300 animate-fade-in"
+                        style="animation-delay: 0ms;">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-2xl mb-4">
+                            <!-- Star Icon -->
+                            <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <polygon
+                                    points="10,1 12.59,7.36 19.51,7.36 13.96,11.64 16.55,18 10,13.72 3.45,18 6.04,11.64 0.49,7.36 7.41,7.36" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-foreground mb-2">Produk Terbaik</h3>
+                        <p class="text-muted-foreground text-sm">Pilihan produk berkualitas dan terlaris setiap hari.
+                        </p>
+                    </div>
+                    <div class="text-center p-6 bg-card rounded-2xl shadow-smooth-md hover:shadow-smooth-lg transition-all duration-300 animate-fade-in"
+                        style="animation-delay: 100ms;">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-2xl mb-4">
+                            <!-- Truck Icon -->
+                            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <rect x="1" y="7" width="15" height="10" rx="2" stroke-width="2" />
+                                <path d="M16 11h3l3 3v3a2 2 0 0 1-2 2h-1" stroke-width="2" />
+                                <circle cx="5.5" cy="19.5" r="1.5" />
+                                <circle cx="18.5" cy="19.5" r="1.5" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-foreground mb-2">Pengiriman Cepat</h3>
+                        <p class="text-muted-foreground text-sm">Pengiriman cepat dan aman ke seluruh Indonesia.</p>
+                    </div>
+                    <div class="text-center p-6 bg-card rounded-2xl shadow-smooth-md hover:shadow-smooth-lg transition-all duration-300 animate-fade-in"
+                        style="animation-delay: 200ms;">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-2xl mb-4">
+                            <!-- Shield Icon -->
+                            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l7 4v6c0 5.25-3.5 10-7 10s-7-4.75-7-10V6z" stroke-width="2" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-foreground mb-2">Jaminan Aman</h3>
+                        <p class="text-muted-foreground text-sm">Transaksi dijamin aman dengan berbagai metode
+                            pembayaran.</p>
+                    </div>
+                    <div class="text-center p-6 bg-card rounded-2xl shadow-smooth-md hover:shadow-smooth-lg transition-all duration-300 animate-fade-in"
+                        style="animation-delay: 300ms;">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-2xl mb-4">
+                            <!-- Support Icon -->
+                            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" stroke-width="2" />
+                                <path d="M8 15c1.333 1 2.667 1 4 0" stroke-width="2" />
+                                <path d="M9 9h.01M15 9h.01" stroke-width="2" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-foreground mb-2">Layanan 24/7</h3>
+                        <p class="text-muted-foreground text-sm">Tim support siap membantu Anda kapan saja.</p>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <!-- Main Footer Content -->
+    <div class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-6 gap-8">
+                <!-- Company Info -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 bg-gradient-primary rounded-xl flex items-center justify-center">
+                            <span class="text-primary-foreground font-bold text-xl">E</span>
+                        </div>
+                        <span class="text-2xl font-bold text-foreground">EcomStore</span>
+                    </div>
+                    <p class="text-muted-foreground mb-6 leading-relaxed">
+                        Platform e-commerce terpercaya dengan lebih dari 10,000 produk berkualitas.
+                        Kami berkomitmen memberikan pengalaman berbelanja terbaik untuk Anda.
+                    </p>
+                    <!-- Contact Info -->
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center space-x-3 text-muted-foreground">
+                            <!-- MapPin Icon -->
+                            <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 21s-6-5.686-6-10a6 6 0 1 1 12 0c0 4.314-6 10-6 10z" stroke-width="2" />
+                                <circle cx="12" cy="11" r="2" stroke-width="2" />
+                            </svg>
+                            <span class="text-sm">Jakarta, Indonesia</span>
+                        </div>
+                        <div class="flex items-center space-x-3 text-muted-foreground">
+                            <!-- Phone Icon -->
+                            <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M22 16.92V19a2 2 0 0 1-2.18 2A19.72 19.72 0 0 1 3 5.18 2 2 0 0 1 5 3h2.09a2 2 0 0 1 2 1.72c.13 1.13.37 2.25.72 3.32a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.58 6.58l1.27-1.27a2 2 0 0 1 2.11-.45c1.07.35 2.19.59 3.32.72A2 2 0 0 1 22 16.92z"
+                                    stroke-width="2" />
+                            </svg>
+                            <span class="text-sm">+62 21 1234 5678</span>
+                        </div>
+                        <div class="flex items-center space-x-3 text-muted-foreground">
+                            <!-- Mail Icon -->
+                            <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <rect x="3" y="5" width="18" height="14" rx="2" stroke-width="2" />
+                                <polyline points="3 7 12 13 21 7" stroke-width="2" />
+                            </svg>
+                            <span class="text-sm">hello@ecomstore.com</span>
+                        </div>
+                    </div>
+                    <!-- Social Links -->
+                    <div class="flex space-x-3">
+                        <a href="https://facebook.com" aria-label="Facebook"
+                            class="p-2 border rounded hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors duration-300">
+                            <!-- Facebook Icon -->
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 5.019 3.676 9.163 8.438 9.877v-6.987h-2.54v-2.89h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.875h2.773l-.443 2.89h-2.33v6.987C18.324 21.163 22 17.019 22 12" />
+                            </svg>
+                        </a>
+                        <a href="https://instagram.com" aria-label="Instagram"
+                            class="p-2 border rounded hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors duration-300">
+                            <!-- Instagram Icon -->
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"></svg>
+                            <path
+                                d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 3.25a5.25 5.25 0 1 1 0 10.5 5.25 5.25 0 0 1 0-10.5zm0 1.5a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5zm5.25.75a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com" aria-label="Twitter"
+                            class="p-2 border rounded hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors duration-300">
+                            <!-- Twitter Icon -->
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"></svg>
+                            <path
+                                d="M22.46 6c-.77.35-1.6.59-2.47.7a4.3 4.3 0 0 0 1.88-2.37 8.59 8.59 0 0 1-2.72 1.04A4.28 4.28 0 0 0 16.11 4c-2.37 0-4.29 1.92-4.29 4.29 0 .34.04.67.11.99A12.13 12.13 0 0 1 3.15 5.13a4.28 4.28 0 0 0 1.33 5.72c-.7-.02-1.36-.21-1.94-.53v.05c0 2.01 1.43 3.68 3.33 4.06-.35.1-.72.16-1.1.16-.27 0-.53-.03-.78-.07.53 1.65 2.07 2.85 3.89 2.88A8.6 8.6 0 0 1 2 19.54a12.13 12.13 0 0 0 6.56 1.92c7.88 0 12.2-6.53 12.2-12.2 0-.19 0-.38-.01-.57A8.72 8.72 0 0 0 24 4.59a8.59 8.59 0 0 1-2.54.7z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <!-- Footer Links -->
+                <div class="lg:col-span-4 grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div>
+                        <h3 class="text-lg font-bold text-foreground mb-4">Perusahaan</h3>
+                        <ul class="space-y-3"></ul>
+                        <li><a href="#tentang"
+                                class="text-muted-foreground hover:text-primary transition-colors duration-300">Tentang
+                                Kami</a></li>
+                        <li><a href="#karir"
+                                class="text-muted-foreground hover:text-primary transition-colors duration-300">Karir</a>
+                        </li>
+                        <li><a href="#blog"
+                                class="text-muted-foreground hover:text-primary transition-colors duration-300">Blog</a>
+                        </li>
+                        <li><a href="#kontak"
+                                class="text-muted-foreground hover:text-primary transition-colors duration-300">Kontak</a>
+                        </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-foreground mb-4">Bantuan</h3>
+                        <ul class="space-y-3">
+                            <li><a href="#faq"
+                                    class="text-muted-foreground hover:text-primary transition-colors duration-300">FAQ</a>
+                            </li>
+                            <li><a href="#pengiriman"
+                                    class="text-muted-foreground hover:text-primary transition-colors duration-300">Pengiriman</a>
+                            </li>
+                            <li><a href="#pengembalian"
+                                    class="text-muted-foreground hover:text-primary transition-colors duration-300">Pengembalian</a>
+                            </li>
+                            <li><a href="#dukungan"
+                                    class="text-muted-foreground hover:text-primary transition-colors duration-300">Dukungan</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-foreground mb-4">Belanja</h3>
+                        <ul class="space-y-3">
+                            <li><a href="#kategori"
+                                    class="text-muted-foreground hover:text-primary transition-colors duration-300">Kategori</a>
+                            </li>
+                            <li><a href="#diskon"
+                                    class="text-muted-foreground hover:text-primary transition-colors duration-300">Diskon</a>
+                            </li>
+                            <li><a href="#produk-baru"
+                                    class="text-muted-foreground hover:text-primary transition-colors duration-300">Produk
+                                    Baru</a></li>
+                            <li><a href="#terlaris"
+                                    class="text-muted-foreground hover:text-primary transition-colors duration-300">Terlaris</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-foreground mb-4">Jaminan</h3>
+                        <ul class="space-y-3">
+                            <li><a href="#garansi"
+                                    class="text-muted-foreground hover:text-primary transition-colors duration-300">Garansi
+                                    Produk</a></li>
+                            <li><a href="#keamanan"
+                                    class="text-muted-foreground hover:text-primary transition-colors duration-300">Keamanan</a>
+                            </li>
+                            <li><a href="#privasi"
+                                    class="text-muted-foreground hover:text-primary transition-colors duration-300">Privasi</a>
+                            </li>
+                            <li><a href="#syarat"
+                                    class="text-muted-foreground hover:text-primary transition-colors duration-300">Syarat
+                                    & Ketentuan</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Section -->
+    <div class="py-12 bg-secondary/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold text-foreground mb-4">
+                    Dapatkan Update Terbaru
+                </h3>
+                <p class="text-muted-foreground mb-8 max-w-2xl mx-auto">
+                    Berlangganan newsletter kami untuk mendapatkan informasi produk terbaru,
+                    promo menarik, dan tips belanja ekslusif.
+                </p>
+                <form class="max-w-md mx-auto">
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <input type="email" placeholder="Masukkan email Anda"
+                            class="flex-1 px-4 py-3 rounded-lg border border-border" required />
+                        <button type="submit"
+                            class="bg-gradient-primary hover:bg-primary-hover transition-all duration-300 px-6 py-3 rounded-lg text-white font-semibold">
+                            Berlangganan
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Footer -->
+    <div class="py-6 border-t border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <div class="text-center md:text-left">
+                    <p class="text-muted-foreground text-sm">
+                        © 2024 EcomStore. Seluruh hak cipta dilindungi.
+                    </p>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <span class="text-muted-foreground text-sm">Metode Pembayaran:</span>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-6 bg-primary rounded-sm flex items-center justify-center">
+                            <!-- CreditCard Icon -->
+                            <svg class="w-4 h-4 text-primary-foreground" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <rect x="2" y="6" width="20" height="12" rx="2" stroke-width="2" />
+                                <path d="M2 10h20" stroke-width="2" />
+                            </svg>
+                        </div>
+                        <span class="text-xs text-muted-foreground">
+                            Visa, Mastercard, OVO, GoPay, DANA
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </footer>
+
+    <script>
+        const products = [
+            {
+                id: "p1",
+                name: "Smartphone XYZ",
+                image: "https://images.samsung.com/id/smartphones/galaxy-s25/buy/product_color_navy_PC.png?imbypass=true",
+                category: "Elektronik",
+                discount: 50,
+                price: "Rp2.999.000",
+                originalPrice: "Rp5.999.000",
+                save: "Rp3.000.000",
+                rating: 4.9,
+                reviews: 123,
+                sold: 500,
+                endsIn: "02:15:00"
+            },
+            {
+                id: "p2",
+                name: "Sneakers ABC",
+                image: "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/a3ea3412-5646-4d99-8927-951489e3239e/AIR+MAX+TL+2.5.png",
+                category: "Fashion",
+                discount: 40,
+                price: "Rp599.000",
+                originalPrice: "Rp999.000",
+                save: "Rp400.000",
+                rating: 4.8,
+                reviews: 98,
+                sold: 300,
+                endsIn: "01:45:00"
+            },
+            {
+                id: "p3",
+                name: "Blender SuperMix",
+                image: "https://media.dekoruma.com/catalogue/WHN-437676.jpg",
+                category: "Rumah Tangga",
+                discount: 30,
+                price: "Rp349.000",
+                originalPrice: "Rp499.000",
+                save: "Rp150.000",
+                rating: 4.7,
+                reviews: 56,
+                sold: 150,
+                endsIn: "00:55:00"
+            }
+        ];
+
+        function getCategoryColor(category) {
+            switch (category) {
+                case "Elektronik":
+                    return "from-pink-100 to-pink-300";
+                case "Fashion":
+                    return "from-green-100 to-green-300";
+                case "Rumah Tangga":
+                    return "from-yellow-100 to-yellow-300";
+                default:
+                    return "from-gray-100 to-gray-300";
+            }
+        }
+
+        function getAnimationDelay(idx) {
+            return `${idx * 100}ms`;
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = products.map((p, idx) => `
+                        <div class="group overflow-hidden bg-gradient-to-br ${getCategoryColor(p.category)} border-0 shadow-smooth-md hover:shadow-smooth-xl transition-all duration-500 transform hover:-translate-y-1 animate-fade-in"
+                            style="animation-delay: ${getAnimationDelay(idx)};" data-id="${p.id}">
+                            <div class="relative overflow-hidden">
+                                <img src="${p.image}" alt="${p.name}"
+                                    class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700" />
+                                <span
+                                    class="absolute top-3 left-3 bg-sale text-sale-foreground font-bold px-3 py-1 rounded-full shadow">-${p.discount}%</span>
+                                <button
+                                    class="absolute top-3 right-3 p-2 bg-white/80 hover:bg-white transition-colors duration-300 rounded-full border-none">
+                                    <span class="sr-only">Favorite</span>
+                                    <svg class="w-5 h-5 text-gray-600 hover:text-red-500 transition-colors duration-300"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 21C12 21 7 16.5 4 13.5C1.5 11 2 7.5 5 6C7.5 4.5 10 6.5 12 8.5C14 6.5 16.5 4.5 19 6C22 7.5 22.5 11 20 13.5C17 16.5 12 21 12 21Z"
+                                            stroke-width="2" />
+                                    </svg>
+                                </button>
+                                <span
+                                    class="absolute bottom-3 left-3 bg-black/50 backdrop-blur-sm text-white px-2 py-1 rounded text-xs">${p.category}</span>
+                            </div>
+                            <div class="p-6">
+                                <h3
+                                    class="text-lg font-bold text-foreground mb-3 line-clamp-2 group-hover:text-primary transition-colors duration-300">
+                                    ${p.name}
+                                </h3>
+                                <div class="flex items-center space-x-2 mb-3">
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                            <polygon
+                                                points="10,1 12.59,7.36 19.51,7.36 13.96,11.64 16.55,18 10,13.72 3.45,18 6.04,11.64 0.49,7.36 7.41,7.36" />
+                                        </svg>
+                                        <span class="text-sm font-semibold text-foreground ml-1">${p.rating}</span>
+                                    </div>
+                                    <span class="text-sm text-muted-foreground">(${p.reviews} ulasan)</span>
+                                    <span class="text-sm text-muted-foreground">• ${p.sold} terjual</span>
+                                </div>
+                                <div class="mb-4">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-xl font-bold text-price">${p.price}</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-sm text-muted-foreground line-through">${p.originalPrice}</span>
+                                        <span class="text-sm text-sale font-semibold">Hemat ${p.save}</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex items-center text-sm text-muted-foreground">
+                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="10" stroke-width="2" />
+                                            <path d="M12 6v6l4 2" stroke-width="2" />
+                                        </svg>
+                                        Berakhir dalam ${p.endsIn}
+                                    </div>
+                                </div>
+                                <button
+                                    class="w-full bg-gradient-to-r from-primary to-primary-hover hover:bg-primary-hover transition-all duration-300 transform hover:scale-105 px-4 py-2 rounded-lg text-white font-semibold flex items-center justify-center border-none add-to-cart-btn"
+                                    data-id="${p.id}">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <circle cx="9" cy="21" r="1" />
+                                        <circle cx="20" cy="21" r="1" />
+                                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                                            stroke-width="2" />
+                                    </svg>
+                                    Tambah ke Keranjang
+                                </button>
+                            </div>
+                        </div>
+                    `).join('');
+        }
+        renderProducts();
+    </script>
+
+    <script>
+        // Simple JS for mobile menu toggle
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+        menuToggle.addEventListener('click', function () {
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+
+        // Simple JS for product add to cart button
+        const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const productId = button.getAttribute('data-id');
+
+                // Cek apakah produk ID valid
+                if (!productId) {
+                    alert('Produk tidak ditemukan!');
+                    return;
+                } 
+
+                // Cek produk di array products
+                const product = products.find(p => p.id === productId);
+
+                // Ambil cart dari localStorage atau buat array baru
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                // Cek apakah produk sudah ada di cart
+                const existing = cart.find(item => item.id === productId);
+                if (existing) {
+                    existing.qty += 1;
+                } else {
+                    cart.push({ ...product, qty: 1 });
+                }
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert('Produk dengan ID ' + productId + ' ditambahkan ke keranjang!');
+            });
+        });
+    </script>
+    </div>
+
+    <!-- ini bagian navbar -->
+</body>
+
+</html>
